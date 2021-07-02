@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
-  post "/sessions" => "sessions#create"
-
   get "/users" => "users#index"
   post "/users" => "users#create"
+
+  post "/sessions" => "sessions#create"
 
   get "/parks" => "parks#index"
   get "/parks/:id" => "parks#show"
 
   get "/favorites" => "favorites#index"
-  get "/favorites/:id" => "favorites#show"
   # post "/favorites" => "favorites#create"
+  get "/favorites/:id" => "favorites#show"
+  # patch "/favorites/:id" => "favorites#update"
+  # delete "/favorites/:id" => "favorites#destroy"
 
   get "/journals" => "journals#index"
-  get "/journals/:id" => "journals#show"
-
   # post "/journals" => "journals#create"
-
+  get "/journals/:id" => "journals#show"
+  # patch "/journals/:id" => "journals#update"
+  # delete "/journals/:id" => "journals#destroy"
 end
