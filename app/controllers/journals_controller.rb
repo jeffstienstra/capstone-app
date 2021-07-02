@@ -8,4 +8,13 @@ class JournalsController < ApplicationController
     journal = Journal.find_by(id: params[:id])
     render json: journal
   end
+
+  # def create
+  # end
+
+  # def update
+  # end
+
+  # def destroy
+  # end
 end

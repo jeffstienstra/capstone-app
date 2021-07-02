@@ -8,4 +8,14 @@ class FavoritesController < ApplicationController
     favorite = Favorite.find_by(id: params[:id])
     render json: favorite
   end
+
+  # def create
+  # end
+
+  # def update
+  # end
+
+  # def destroy
+  # end
+
 end
