@@ -554,6 +554,7 @@ nps = {
 #  address printout example: p "#{nps[:data][0][:addresses][0][:city]}, #{nps[:data][0][:addresses][0][:stateCode]} #{nps[:data][0][:addresses][0][:postalCode]}"
 # image (main image) = nps[:data][0][:images][0][:url]
 # image title (main image) = nps[:data][0][:images][0][:title]
+# weatherInfo = nps[:data][0][:weatherInfo]
 
 activities_raw = nps[:data][0][:activities]
 p nps[:data][0][:parkCode]
@@ -569,15 +570,16 @@ while i < activities_raw.length
 end
 puts activities
 
-p nps[:data][0][:states]
-p nps[:data][0][:contacts][:phoneNumbers][0][:phoneNumber]
-p nps[:data][0][:contacts][:emailAddresses][0][:emailAddress]
-p nps[:data][0][:entranceFees][0][:title]
+p nps[:data][0][:states] # state(s) the park is located in
+p nps[:data][0][:contacts][:phoneNumbers][0][:phoneNumber] # main phone number
+p nps[:data][0][:contacts][:emailAddresses][0][:emailAddress] # main email address
+p nps[:data][0][:entranceFees][0][:title] # name of admission type
 pp "The cost for #{nps[:data][0][:entranceFees][0][:title]} = $#{nps[:data][0][:entranceFees][0][:cost]}. #{nps[:data][0][:entranceFees][0][:description]}"
 pp "The cost for the #{nps[:data][0][:entrancePasses][0][:title]} = #{nps[:data][0][:entrancePasses][0][:cost]}."
-pp nps[:data][0][:directionsInfo]
-pp nps[:data][0][:directionsUrl]
-p nps[:data][0][:addresses][0][:line1]
+pp nps[:data][0][:directionsInfo] # a descriptino of driving directions
+pp nps[:data][0][:directionsUrl] # a link to driving directions
+p nps[:data][0][:addresses][0][:line1] # get physical address info
 p "#{nps[:data][0][:addresses][0][:city]}, #{nps[:data][0][:addresses][0][:stateCode]} #{nps[:data][0][:addresses][0][:postalCode]}"
-pp nps[:data][0][:images][0][:url]
-pp nps[:data][0][:images][0][:title]
+pp nps[:data][0][:images][0][:url] #get cover image url
+pp nps[:data][0][:images][0][:title] # print image title
+pp nps[:data][0][:weatherInfo] #print the weather info
