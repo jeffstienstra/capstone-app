@@ -8,14 +8,13 @@ Rails.application.routes.draw do
   get "/parks/:id" => "parks#show"
 
   get "/favorites" => "favorites#index"
-  # post "/favorites" => "favorites#create"
+  post "/favorites" => "favorites#create"
   get "/favorites/:id" => "favorites#show"
-  # patch "/favorites/:id" => "favorites#update"
-  # delete "/favorites/:id" => "favorites#destroy"
+  delete "/favorites/:id" => "favorites#destroy"
 
   get "/journals" => "journals#index"
-  # post "/journals" => "journals#create"
+  post "/journals" => "journals#create"
   get "/journals/:id" => "journals#show"
-  # patch "/journals/:id" => "journals#update"
-  # delete "/journals/:id" => "journals#destroy"
+  patch "/journals/:id" => "journals#update"
+  delete "/journals/:id" => "journals#destroy"
 end
