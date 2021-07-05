@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
       user_id: current_user.id,
       park_name: params[:park_name],
       address: params[:address],
-      parkCode: params[:park_code],
+      parkCode: params[:parkCode],
       image_url: params[:image_url],
     )
     if favorite.save
