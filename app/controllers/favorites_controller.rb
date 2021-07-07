@@ -1,6 +1,7 @@
 class FavoritesController < ApplicationController
   def index
-    favorites = Favorite.all.order(:park_name)
+    # favorites = Favorite.all.order(:park_name)
+    favorites = current_user.favorites.order(:park_name)  #<- Rails sometimes says no method 'favorites' for NilClass
     render json: favorites
   end
 
@@ -25,7 +26,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    favorite = Favorite.find_by(id: params[:id])
+    favorite = Favorite.find_by(parkCode: params[:parkCode])
     favorite.destroy
     render json: { message: "This park has been removed from your favorites." }
   end

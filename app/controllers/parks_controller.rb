@@ -11,7 +11,8 @@ class ParksController < ApplicationController
   def show
     #first get park api_id from initial search results and pass as params[:id]
     #https://developer.nps.gov/api/v1/parks?&id=#{id: params[:parkName]}&api_key=#{Rails.application.credentials.nps_api_key
-    response = HTTP.get("https://developer.nps.gov/api/v1/parks?&parkCode=abli&api_key=#{Rails.application.credentials.nps_api_key}")
+    park_code = params[:parkCode]
+    response = HTTP.get("https://developer.nps.gov/api/v1/parks?&parkCode=#{park_code}&api_key=#{Rails.application.credentials.nps_api_key}")
     park = JSON.parse(response.body)
     render json: park
   end
