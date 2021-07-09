@@ -10,7 +10,7 @@ class JournalsController < ApplicationController
   end
 
   def create
-    journal = Journal.new(
+    journal = Journal.find_or_initialize_by(
       title: params[:title],
       body: params[:body],
       date: params[:date],
