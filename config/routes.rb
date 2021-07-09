@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post "/sessions" => "sessions#create"
 
   get "/parks" => "parks#index"
-  get "/parks/:id" => "parks#show"
+  get "/parks/:parkCode" => "parks#show"
 
   get "/favorites" => "favorites#index"
   post "/favorites" => "favorites#create"

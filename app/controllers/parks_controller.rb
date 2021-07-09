@@ -2,9 +2,10 @@ class ParksController < ApplicationController
 
   #park_serializer will display only name and 1 image url
   def index
-    response = HTTP.get("https://developer.nps.gov/api/v1/parks?limit=10&start=0&api_key=#{Rails.application.credentials.nps_api_key}")
-    data = JSON.parse(response.body)
-    render json: data
+    response = HTTP.get("https://developer.nps.gov/api/v1/parks?limit=25&start=0&api_key=#{Rails.application.credentials.nps_api_key}")
+    # data = JSON.parse(response.body)
+    parks = response.parse["data"]
+    render json: parks
   end
 
   #the 'more info' page will show full park data. we need a second web request using the park's api_id
@@ -13,7 +14,8 @@ class ParksController < ApplicationController
     #https://developer.nps.gov/api/v1/parks?&id=#{id: params[:parkName]}&api_key=#{Rails.application.credentials.nps_api_key
     park_code = params[:parkCode]
     response = HTTP.get("https://developer.nps.gov/api/v1/parks?&parkCode=#{park_code}&api_key=#{Rails.application.credentials.nps_api_key}")
-    park = JSON.parse(response.body)
+    # data = JSON.parse(response.body)
+    park = response.parse["data"]
     render json: park
   end
 end
