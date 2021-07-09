@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    favorite = Favorite.new(
+    favorite = Favorite.find_or_initialize_by(
       user_id: current_user.id,
       park_name: params[:park_name],
       address: params[:address],

@@ -5,7 +5,7 @@ class JournalsController < ApplicationController
   end
 
   def show
-    journal = Journal.find_by(id: params[:id])
+    journal = Journal.find_by(favorite_id: params[:favorite_id])
     render json: journal
   end
 
