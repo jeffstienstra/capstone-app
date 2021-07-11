@@ -2,7 +2,8 @@ class ParksController < ApplicationController
 
   #park_serializer will display only name and 1 image url
   def index
-    response = HTTP.get("https://developer.nps.gov/api/v1/parks?limit=25&start=0&api_key=#{Rails.application.credentials.nps_api_key}")
+    state_code = "stateCode=#{params[:stateCode]}&"
+    response = HTTP.get("https://developer.nps.gov/api/v1/parks?#{state_code}limit=25&start=0&api_key=#{Rails.application.credentials.nps_api_key}")
     # data = JSON.parse(response.body)
     parks = response.parse["data"]
     render json: parks
@@ -12,9 +13,8 @@ class ParksController < ApplicationController
   def show
     #first get park api_id from initial search results and pass as params[:id]
     #https://developer.nps.gov/api/v1/parks?&id=#{id: params[:parkName]}&api_key=#{Rails.application.credentials.nps_api_key
-    state_code = "stateCode=#{params[:stateCode]}&"
     park_code = "parkCode=#{params[:parkCode]}&"
-    response = HTTP.get("https://developer.nps.gov/api/v1/parks?&#{state_code}#{park_code}api_key=#{Rails.application.credentials.nps_api_key}")
+    response = HTTP.get("https://developer.nps.gov/api/v1/parks?#{park_code}api_key=#{Rails.application.credentials.nps_api_key}")
     # data = JSON.parse(response.body)
     park = response.parse["data"]
     render json: park
