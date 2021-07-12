@@ -10,11 +10,15 @@ class JournalsController < ApplicationController
   end
 
   def create
+    # response = Cloudinary::Uploader.upload(params[:image_file], resource_type: :auto)
+    # cloudinary_url = response["secure_url"]
+
     journal = Journal.find_or_initialize_by(
+      favorite_id: params[:favorite_id],
+      date: params[:date],
       title: params[:title],
       body: params[:body],
-      date: params[:date],
-      favorite_id: params[:favorite_id],
+      # image: cloudinary_url,
     )
 
     if journal.save
