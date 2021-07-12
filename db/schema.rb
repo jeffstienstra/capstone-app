@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_140525) do
+ActiveRecord::Schema.define(version: 2021_07_12_021516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 2021_07_02_140525) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image_url"
+    t.boolean "visited", default: false
+    t.string "latitude"
+    t.string "longitude"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -32,6 +35,29 @@ ActiveRecord::Schema.define(version: 2021_07_02_140525) do
     t.integer "favorite_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "longitude"
+    t.string "latitude"
+    t.boolean "is_public", default: false
+  end
+
+  create_table "plants", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "photo_description"
+    t.string "image_url"
+    t.string "latitude"
+    t.string "longitude"
+    t.string "plant_name"
+    t.string "common_name"
+    t.string "edible_parts"
+    t.string "propagation_methods"
+    t.string "synonyms"
+    t.string "wiki_description"
+    t.string "wiki_citation_url"
+    t.string "wiki_license_name"
+    t.string "wiki_license_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_plant", default: false
   end
 
   create_table "users", force: :cascade do |t|
