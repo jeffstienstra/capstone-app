@@ -17,6 +17,9 @@ class FavoritesController < ApplicationController
       address: params[:address],
       parkCode: params[:parkCode],
       image_url: params[:image_url],
+      longitude: params[:longitude],
+      latitude: params[:latitude],
+      visited: false,
     )
     if favorite.save
       render json: favorite.as_json

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_031636) do
+ActiveRecord::Schema.define(version: 2021_07_12_180553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_031636) do
     t.string "latitude"
     t.boolean "is_public", default: false
     t.string "image"
+    t.string "parkCode"
   end
 
   create_table "plants", force: :cascade do |t|
