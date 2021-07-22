@@ -1,21 +1,15 @@
 class ParksController < ApplicationController
 
-  #park_serializer will display only name and 1 image url
+  #park_serializer will display only park name and 1st image url from NPS database
   def index
-    state_code = "stateCode=#{params[:stateCode]}&"
-    response = HTTP.get("https://developer.nps.gov/api/v1/parks?#{state_code}limit=25&start=0&api_key=#{Rails.application.credentials.nps_api_key}")
-    # data = JSON.parse(response.body)
+    response = HTTP.get("https://developer.nps.gov/api/v1/parks?stateCode=#{params[:stateCode]}&limit=25&start=0&api_key=#{Rails.application.credentials.nps_api_key}")
     parks = response.parse["data"]
     render json: parks
   end
 
-  #the 'more info' page will show full park data. we need a second web request using the park's api_id
+  #the 'Details' page will show full park data based on parkCode retrieved from parks index method.
   def show
-    #first get park api_id from initial search results and pass as params[:id]
-    #https://developer.nps.gov/api/v1/parks?&id=#{id: params[:parkName]}&api_key=#{Rails.application.credentials.nps_api_key
-    park_code = "parkCode=#{params[:parkCode]}&"
-    response = HTTP.get("https://developer.nps.gov/api/v1/parks?#{park_code}api_key=#{Rails.application.credentials.nps_api_key}")
-    # data = JSON.parse(response.body)
+    response = HTTP.get("https://developer.nps.gov/api/v1/parks?parkCode=#{params[:parkCode]}&api_key=#{Rails.application.credentials.nps_api_key}")
     park = response.parse["data"]
     render json: park
   end
